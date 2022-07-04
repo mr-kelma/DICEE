@@ -2,6 +2,6 @@
 
 1. This is my project for Module 4 [iOS & Swift - The Complete iOS App Development Bootcamp].
 
-2. UIKit/Storyboard.
+2. UIKit/Storyboard/MVC.
 
-![DICEE](https://user-images.githubusercontent.com/98012564/171633352-9208ddd0-d1f2-4c91-a1ff-56bac9b26563.gif)
+![DICEE](https://user-images.githubusercontent.com/98012564/177212190-c09118f8-79f8-4017-8e14-c57d66bb779a.gif)
