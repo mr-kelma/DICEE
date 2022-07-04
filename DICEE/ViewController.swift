@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AudioToolbox
 
 let arrayOfDice = [#imageLiteral(resourceName: "DiceOne"), #imageLiteral(resourceName: "DiceTwo"), #imageLiteral(resourceName: "DiceThree"), #imageLiteral(resourceName: "DiceFour"), #imageLiteral(resourceName: "DiceFive"), #imageLiteral(resourceName: "DiceSix")]
 
@@ -20,7 +21,6 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         diceImageViewLeft.image = UIImage(imageLiteralResourceName: "DiceOne")
         diceImageViewRight.image = #imageLiteral(resourceName: "DiceOne")
         //different recording options "UIImage(imageLiteralResourceName: "DiceFive")" or "#imageLiteral()"
@@ -28,10 +28,26 @@ class ViewController: UIViewController {
     }
     
     @IBAction func trowButtonPressed(_ sender: UIButton) {
+        animation()
         diceImageViewLeft.image = arrayOfDice.randomElement()
         diceImageViewRight.image = arrayOfDice[Int.random(in: 0...5)]
         //different recording options '[Int.random(in: _..._)]' or 'randomElement()'
         (diceImageViewLeft.alpha, diceImageViewRight.alpha) = (1.0, 1.0)
         //makes dices isible after throw
+    }
+    
+    func animation() {
+        let arrayOfDiceLeft = arrayOfDice.shuffled()
+        let arrayOfDiceRight = arrayOfDice.shuffled()
+        diceImageViewLeft.animationDuration = 1
+        diceImageViewRight.animationDuration = 1
+        diceImageViewLeft.animationImages = arrayOfDiceLeft
+        diceImageViewRight.animationImages = arrayOfDiceRight
+        diceImageViewLeft.startAnimating()
+        diceImageViewRight.startAnimating()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.diceImageViewLeft.stopAnimating()
+            self.diceImageViewRight.stopAnimating()
+        }
     }
 }
